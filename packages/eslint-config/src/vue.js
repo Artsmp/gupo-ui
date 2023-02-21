@@ -1,5 +1,6 @@
 module.exports = {
-  extends: ['./typescript.js', 'plugin:vue/vue3-recommended'],
+  // 引用顺序很重要
+  extends: ['plugin:vue/vue3-recommended', './typescript.js'],
   overrides: [
     {
       files: ['*.vue'],
@@ -32,6 +33,5 @@ module.exports = {
       },
     ],
     'vue/attribute-hyphenation': ['error', 'always'],
-    '@typescript-eslint/no-explicit-any': 'error',
   },
 }
