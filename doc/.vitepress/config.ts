@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { mdPlugin } from './plugins'
 
 export default defineConfig({
   title: 'GUPO-UI',
@@ -18,5 +19,8 @@ export default defineConfig({
         ],
       },
     ],
+  },
+  markdown: {
+    config: (md) => mdPlugin(md),
   },
 })

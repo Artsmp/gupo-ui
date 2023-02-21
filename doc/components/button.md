@@ -1,3 +1,9 @@
 # button 组件
 
-<GpButton></GpButton>
+## Basic Usage
+
+::: demo 这里写描述哦~
+
+button/basic
+
+:::
