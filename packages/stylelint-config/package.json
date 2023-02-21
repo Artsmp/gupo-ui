@@ -8,5 +8,24 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.4",
+    "stylelint": "^15.2.0"
+  },
+  "peerDependencies": {
+    "postcss": ">= 8",
+    "prettier": ">= 2",
+    "stylelint": ">= 15"
+  },
+  "dependencies": {
+    "postcss-html": "^1.5.0",
+    "postcss-less": "^6.0.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recess-order": "^4.0.0",
+    "stylelint-config-standard": "^30.0.1",
+    "stylelint-prettier": "^2.0.0"
+  }
 }
