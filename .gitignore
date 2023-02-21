@@ -1,0 +1,29 @@
+# System
+.DS_Store
+
+# Coverage directory
+coverage
+
+# Build Generate
+es
+lib
+dist
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Caches
+.temp
+.cache
+.eslintcache
+.stylelintcache
+
+# Dependency directories
+node_modules
+
+# note
+note.md

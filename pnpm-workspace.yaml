@@ -1,0 +1,4 @@
+packages:
+  - doc
+  - example
+  - packages/*
