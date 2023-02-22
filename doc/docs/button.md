@@ -1,6 +1,6 @@
 # button 组件
 
-## Basic Usage
+## 基础示例
 
 ::: demo 这里写描述哦~
 

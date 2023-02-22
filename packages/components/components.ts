@@ -1,9 +1,10 @@
 import type { App } from 'vue'
 import Button from './src/gp-button'
+import CountTo from './src/gp-count-to'
 
 export * from './src/gp-button'
 
-const components = [Button]
+const components = [Button, CountTo]
 
 export function install(app: App) {
   components.forEach((comp) => {

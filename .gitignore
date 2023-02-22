@@ -18,7 +18,7 @@ yarn-error.log*
 
 # Caches
 .temp
-.vitepress/cache/
+doc/.vitepress/cache
 .eslintcache
 .stylelintcache
 

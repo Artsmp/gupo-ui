@@ -8,14 +8,14 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '指南', link: '/guide' },
-      { text: '组件', link: '/components/button' },
+      { text: '组件', link: '/docs/button', activeMatch: '/docs/.*' },
     ],
     sidebar: [
       {
         text: '基础组件',
         items: [
-          { text: '按钮', link: '/components/button' },
-          { text: '图标', link: '/components/icon' },
+          { text: '按钮', link: '/docs/button' },
+          { text: '数字动画', link: '/docs/count-to' },
         ],
       },
     ],

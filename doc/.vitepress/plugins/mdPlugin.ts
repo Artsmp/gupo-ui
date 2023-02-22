@@ -31,15 +31,16 @@ export const mdPlugin = (md: MarkdownIt) => {
         const srcFile = sourceFileToken.children?.[0].content ?? ''
         if (sourceFileToken.type === 'inline') {
           source = readFileSync(resolve(__dirname, '../../examples/', `${srcFile}.vue`), 'utf-8')
-          console.log('source: ', source)
         }
+        console.log('====>')
+
         if (!source) throw new Error(`未识别路径: ${srcFile}`)
         return `
           <Demo :demos="demos" source="${encodeURIComponent(
             highlight(source, 'vue')
           )}" path="${srcFile}" raw-source="${encodeURIComponent(
           source
-        )}" description="${encodeURIComponent(description)}">
+        )}" description="${encodeURIComponent(MarkdownIt().render(description))}">
         `
       } else {
         return '</Demo>'
