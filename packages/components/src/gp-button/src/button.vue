@@ -22,7 +22,7 @@ const getButtonClass = computed(() => {
 </script>
 
 <template>
-  <Button type="primary" :class="getButtonClass">
+  <Button :class="getButtonClass" v-bind="getBindValue">
     <template #default="data">
       <slot v-bind="data || {}"></slot>
     </template>

@@ -1,264 +1,132 @@
-@import './color.less';
-@import 'ant-design-vue/es/button/style/index.less';
+@import (reference) 'ant-design-vue/es/button/style/index.less';
+@import url('./color.less');
 
-// button reset
+.btn-type(@color, @hover-color, @active-color) {
+  color: @color;
+  border-color: @color;
+
+  &:hover,
+  &:focus {
+    color: @hover-color;
+    border-color: @hover-color;
+  }
+
+  &:active {
+    color: @active-color;
+    border-color: @active-color;
+  }
+
+  &.ant-btn-primary {
+    color: @white;
+    background-color: @color;
+
+    &:hover,
+    &:focus {
+      background-color: @hover-color;
+      border-color: @hover-color;
+    }
+
+    &:active {
+      background-color: @active-color;
+      border-color: @active-color;
+    }
+  }
+
+  &.ant-btn-dashed {
+    color: @color;
+    background-color: transparent;
+    border-color: @color;
+
+    &:hover,
+    &:focus {
+      color: @hover-color;
+      border-color: @hover-color;
+    }
+
+    &:active {
+      color: @active-color;
+      border-color: @active-color;
+    }
+  }
+
+  &.ant-btn-link {
+    color: @color;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover,
+    &:focus {
+      color: @hover-color;
+    }
+
+    &:active {
+      color: @active-color;
+    }
+  }
+
+  &.ant-btn-text {
+    color: @color;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover,
+    &:active {
+      background-color: rgb(0 0 0 / 2.8%);
+    }
+  }
+
+  &.ant-btn-danger {
+    color: @white;
+    border-color: transparent;
+  }
+
+  &.ant-btn-background-ghost {
+    color: @color;
+    background-color: transparent;
+    border-color: @color;
+
+    &:hover,
+    &:focus {
+      color: @hover-color;
+      border-color: @hover-color;
+    }
+
+    &:active {
+      color: @active-color;
+      border-color: @active-color;
+    }
+  }
+}
+
 .ant-btn {
-  &-link:hover,
-  &-link:focus,
-  &-link:active {
-    border-color: transparent !important;
+  &.ant-btn-loading,
+  &.is-disabled {
+    cursor: not-allowed;
   }
 
-  &-primary {
-    color: @white;
-    background-color: @button-primary-color;
-
+  &.is-disabled[disabled] {
     &:hover,
+    &:active,
     &:focus {
-      color: @white;
-      background-color: @button-primary-hover-color;
+      color: rgb(0 0 0 / 25%);
+      background-color: #f5f5f5;
+      border-color: #d9d9d9;
     }
-  }
 
-  // &-primary:not(&-background-ghost, [disabled]) {
-  //   color: @white;
-  // }
-
-  &-default {
-    color: @button-cancel-color;
-    background-color: @button-cancel-bg-color;
-    border-color: @button-cancel-border-color;
-
-    &:hover,
-    &:focus {
-      color: @button-cancel-hover-color;
-      background-color: @button-cancel-hover-bg-color;
-      border-color: @button-cancel-hover-border-color;
-    }
-  }
-
-  [data-theme='light'] &.ant-btn-link.is-disabled {
     color: rgb(0 0 0 / 25%);
-    text-shadow: none;
-    cursor: not-allowed !important;
-    background-color: transparent !important;
-    border-color: transparent !important;
-    box-shadow: none;
+    background-color: #f5f5f5;
+    border-color: #d9d9d9;
   }
 
-  [data-theme='dark'] &.ant-btn-link.is-disabled {
-    color: rgb(255 255 255 / 25%) !important;
-    text-shadow: none;
-    cursor: not-allowed !important;
-    background-color: transparent !important;
-    border-color: transparent !important;
-    box-shadow: none;
+  &-error {
+    .btn-type(@button-error-color,@button-error-hover-color,@button-error-active-color);
   }
 
-  // color: @white;
-
-  &-success.ant-btn-link:not([disabled='disabled']) {
-    color: @button-success-color;
-
-    &:hover,
-    &:focus {
-      color: @button-success-hover-color;
-      border-color: transparent;
-    }
-
-    &:active {
-      color: @button-success-active-color;
-    }
+  &-success {
+    .btn-type(@button-success-color,@button-success-hover-color,@button-success-active-color);
   }
 
-  &-success.ant-btn-link.ant-btn-loading,
-  &-warning.ant-btn-link.ant-btn-loading,
-  &-error.ant-btn-link.ant-btn-loading,
-  &-background-ghost.ant-btn-link.ant-btn-loading,
-  &.ant-btn-link.ant-btn-loading {
-    &::before {
-      background: transparent;
-    }
-  }
-
-  &-success:not(.ant-btn-link, .is-disabled) {
-    color: @white;
-    background-color: @button-success-color;
-    border-color: @button-success-color;
-
-    &:hover,
-    &:focus {
-      color: @white;
-      background-color: @button-success-hover-color;
-      border-color: @button-success-hover-color;
-    }
-
-    &:active {
-      background-color: @button-success-active-color;
-      border-color: @button-success-active-color;
-    }
-  }
-
-  &-warning.ant-btn-link:not([disabled='disabled']) {
-    color: @button-warn-color;
-
-    &:hover,
-    &:focus {
-      color: @button-warn-hover-color;
-      border-color: transparent;
-    }
-
-    &:active {
-      color: @button-warn-active-color;
-    }
-  }
-
-  &-warning:not(.ant-btn-link, .is-disabled) {
-    color: @white;
-    background-color: @button-warn-color;
-    border-color: @button-warn-color;
-
-    &:hover,
-    &:focus {
-      color: @white;
-      background-color: @button-warn-hover-color;
-      border-color: @button-warn-hover-color;
-    }
-
-    &:active {
-      background-color: @button-warn-active-color;
-      border-color: @button-warn-active-color;
-    }
-  }
-
-  &-error.ant-btn-link:not([disabled='disabled']) {
-    color: @button-error-color;
-
-    &:hover,
-    &:focus {
-      color: @button-error-hover-color;
-      border-color: transparent;
-    }
-
-    &:active {
-      color: @button-error-active-color;
-    }
-  }
-
-  &-error:not(.ant-btn-link, .is-disabled) {
-    color: @white;
-    background-color: @button-error-color;
-    border-color: @button-error-color;
-
-    &:hover,
-    &:focus {
-      color: @white;
-      background-color: @button-error-hover-color;
-      border-color: @button-error-hover-color;
-    }
-
-    &:active {
-      background-color: @button-error-active-color;
-      border-color: @button-error-active-color;
-    }
-  }
-
-  &-background-ghost {
-    background-color: transparent !important;
-    border-width: 1px;
-
-    &[disabled],
-    &[disabled]:hover {
-      color: fade(@white, 40%) !important;
-      background-color: transparent !important;
-      border-color: fade(@white, 40%) !important;
-    }
-  }
-
-  &-dashed&-background-ghost,
-  &-default&-background-ghost {
-    color: @button-ghost-color;
-    border-color: @button-ghost-color;
-
-    &:hover,
-    &:focus {
-      color: @button-ghost-hover-color;
-      border-color: @button-ghost-hover-color;
-    }
-
-    &:active {
-      color: @button-ghost-active-color;
-      border-color: @button-ghost-active-color;
-    }
-
-    &[disabled],
-    &[disabled]:hover {
-      color: fade(@white, 40%) !important;
-      border-color: fade(@white, 40%) !important;
-    }
-  }
-
-  &-background-ghost&-success:not(.ant-btn-link) {
-    color: @button-success-color;
-    background-color: transparent;
-    border-color: @button-success-color;
-    border-width: 1px;
-
-    &:hover,
-    &:focus {
-      color: @button-success-hover-color !important;
-      border-color: @button-success-hover-color;
-    }
-
-    &:active {
-      color: @button-success-active-color;
-      border-color: @button-success-active-color;
-    }
-  }
-
-  &-background-ghost&-warning:not(.ant-btn-link) {
-    color: @button-warn-color;
-    background-color: transparent;
-    border-color: @button-warn-color;
-    border-width: 1px;
-
-    &:hover,
-    &:focus {
-      color: @button-warn-hover-color !important;
-      border-color: @button-warn-hover-color;
-    }
-
-    &:active {
-      color: @button-warn-active-color;
-      border-color: @button-warn-active-color;
-    }
-  }
-
-  &-background-ghost&-error:not(.ant-btn-link) {
-    color: @button-error-color;
-    background-color: transparent;
-    border-color: @button-error-color;
-    border-width: 1px;
-
-    &:hover,
-    &:focus {
-      color: @button-error-hover-color !important;
-      border-color: @button-error-hover-color;
-    }
-
-    &:active {
-      color: @button-error-active-color;
-      border-color: @button-error-active-color;
-    }
-  }
-
-  &-ghost.ant-btn-link:not([disabled='disabled']) {
-    color: @button-ghost-color;
-
-    &:hover,
-    &:focus {
-      color: @button-ghost-hover-color;
-      border-color: transparent;
-    }
+  &-warning {
+    .btn-type(@button-warning-color,@button-warning-hover-color,@button-warning-active-color);
   }
 }

@@ -5,8 +5,7 @@ import 'prism-theme-vars/base.css'
 import './style.css'
 
 // ui lib
-// import 'ant-design-vue/dist/antd.less'
-import 'gupo-ui/index.less'
+import 'gupo-ui/dist/index.css'
 // @ts-ignore
 import Demo from '../components/demo.vue'
 

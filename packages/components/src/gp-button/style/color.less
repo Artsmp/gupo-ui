@@ -1,3 +1,7 @@
+@root-entry-name: 'default';
+/* stylelint-disable-next-line no-invalid-position-at-import-rule */
+@import (reference) 'ant-design-vue/es/style/themes/index.less';
+
 html {
   // header
   --header-bg-color: #394664;
@@ -122,9 +126,9 @@ html {
 @button-success-color: @success-color;
 @button-success-hover-color: lighten(@success-color, 10%);
 @button-success-active-color: darken(@success-color, 10%);
-@button-warn-color: @warning-color;
-@button-warn-hover-color: lighten(@warning-color, 10%);
-@button-warn-active-color: darken(@warning-color, 10%);
+@button-warning-color: @warning-color;
+@button-warning-hover-color: lighten(@warning-color, 10%);
+@button-warning-active-color: darken(@warning-color, 10%);
 @button-error-color: @error-color;
 @button-error-hover-color: lighten(@error-color, 10%);
 @button-error-active-color: darken(@error-color, 10%);
