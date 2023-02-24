@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
+import type { CSSProperties } from 'vue'
 import { useClipboard } from '@vueuse/core'
 import UnExpand from './icons/UnExpand.vue'
 import Expand from './icons/Expand.vue'
@@ -40,6 +41,22 @@ const handleCopy = () => {
     }, 2000)
   }
 }
+
+const $source = ref<HTMLDivElement>()
+const sourceWrapOriginHeight = ref(0)
+const changeHeight = () => {
+  if (showSource.value) {
+    $source.value.style.height = sourceWrapOriginHeight.value + 'px'
+  } else {
+    $source.value.style.height = '0px'
+  }
+}
+onMounted(() => {
+  sourceWrapOriginHeight.value = $source.value.clientHeight
+  changeHeight()
+})
+
+watch(showSource, changeHeight)
 </script>
 
 <template>
@@ -63,7 +80,7 @@ const handleCopy = () => {
           <CopySuccess v-else class="icon-btn"></CopySuccess>
         </div>
       </div>
-      <div class="doc-demo__code--wrapper" :class="showSource && 'show'">
+      <div class="doc-demo__code--wrapper" ref="$source">
         <div class="doc-demo__code" v-html="decodedSource" />
       </div>
     </div>
@@ -104,12 +121,8 @@ const handleCopy = () => {
   }
 
   .doc-demo__code--wrapper {
-    height: 0;
     overflow: hidden;
-
-    &.show {
-      height: auto;
-    }
+    transition: 0.3s;
 
     .doc-demo__code {
       padding: 16px;
