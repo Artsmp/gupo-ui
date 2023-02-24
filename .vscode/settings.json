@@ -1,3 +1,4 @@
 {
-  "unocss.root": "./doc"
+  "unocss.root": "./doc",
+  "references.preferredLocation": "peek"
 }

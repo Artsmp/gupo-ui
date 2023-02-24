@@ -13,8 +13,6 @@ pre {
 
 :root {
   /* vitepress css var  */
-  --vp-c-brand: #646cff;
-  --vp-c-brand-light: #747bff;
   --vp-c-bg: #f1f0ea;
   --vp-sidebar-bg-color: #f1f0ea;
 
@@ -29,7 +27,7 @@ pre {
   --prism-function: #a1b567;
   --prism-deleted: #a14f55;
   --prism-class: #54b1bf;
-  --prism-builtin: #64acff;
+  --prism-builtin: #c64848;
   --prism-property: #dd8e6e;
   --prism-namespace: #db889a;
   --prism-punctuation: #858585;

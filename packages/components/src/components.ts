@@ -1,8 +1,8 @@
 import type { App } from 'vue'
-import Button from './src/gp-button'
-import CountTo from './src/gp-count-to'
+import Button from './gp-button'
+import CountTo from './gp-count-to'
 
-export * from './src/gp-button'
+export * from './gp-button'
 
 const components = [Button, CountTo]
 

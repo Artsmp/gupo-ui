@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { useClipboard } from '@vueuse/core'
+import UnExpand from './icons/UnExpand.vue'
+import Expand from './icons/Expand.vue'
+import CopySuccess from './icons/CopySuccess.vue'
+import Copy from './icons/Copy.vue'
 
 const props = defineProps<{
   demos: object
@@ -41,9 +45,9 @@ const handleCopy = () => {
 <template>
   <div>
     <p v-html="decodedDescription" />
-    <div class="rounded-4 b-1 b-solid">
+    <div class="doc-demo">
       <ClientOnly>
-        <div class="p-16">
+        <div class="doc-demo__show">
           <component
             :is="formatPathDemos[props.path]"
             v-if="formatPathDemos[props.path]"
@@ -51,32 +55,66 @@ const handleCopy = () => {
           />
         </div>
       </ClientOnly>
-      <div class="flex justify-end px-8 py-8 b-0 b-t-1 b-b-1 b-dashed">
-        <div flex gap-16 items-center>
-          <div
-            @click="showSource = true"
-            v-if="!showSource"
-            class="icon-btn"
-            i-material-symbols:code
-          ></div>
-          <div
-            @click="showSource = false"
-            v-else
-            class="icon-btn"
-            i-material-symbols:code-off
-          ></div>
-          <div
-            v-if="!copied"
-            class="icon-btn"
-            i-material-symbols:content-copy-outline-sharp
-            @click="handleCopy"
-          ></div>
-          <div v-else class="icon-btn" i-material-symbols:assignment-turned-in></div>
+      <div class="doc-demo__opt" :class="showSource && 'show'">
+        <div class="doc-demo__opt--wrapper">
+          <Expand @click="showSource = true" v-if="!showSource" class="icon-btn"></Expand>
+          <UnExpand @click="showSource = false" v-else />
+          <Copy v-if="!copied" class="icon-btn" @click="handleCopy"></Copy>
+          <CopySuccess v-else class="icon-btn"></CopySuccess>
         </div>
       </div>
-      <div class="h-0 overflow-hidden" :class="showSource && 'h-auto'">
-        <div class="p-16 overflow-auto" v-html="decodedSource" />
+      <div class="doc-demo__code--wrapper" :class="showSource && 'show'">
+        <div class="doc-demo__code" v-html="decodedSource" />
       </div>
     </div>
   </div>
 </template>
+
+<style lang="less" scoped>
+.doc-demo {
+  border: 1px solid #9ca3af;
+
+  .doc-demo__show {
+    padding: 16px;
+  }
+
+  .doc-demo__opt {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 8px;
+    border: 1px dashed #a29d9d;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+
+    &.show {
+      border-bottom-width: 1px;
+    }
+
+    .doc-demo__opt--wrapper {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+
+      .icon-btn {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .doc-demo__code--wrapper {
+    height: 0;
+    overflow: hidden;
+
+    &.show {
+      height: auto;
+    }
+
+    .doc-demo__code {
+      padding: 16px;
+      overflow: auto;
+    }
+  }
+}
+</style>

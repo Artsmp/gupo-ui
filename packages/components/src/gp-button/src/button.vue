@@ -1,7 +1,30 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Button } from 'ant-design-vue'
+import { computed, unref } from 'vue'
+import { useAttrs } from '../../utils'
+import { buttonProps } from './props'
+
+const props = defineProps(buttonProps)
+
+const attrs = useAttrs({ excludeDefaultKeys: false })
+
+const getBindValue = computed(() => ({ ...unref(attrs), ...props }))
+
+const getButtonClass = computed(() => {
+  const { color, disabled } = props
+  return [
+    {
+      [`ant-btn-${color}`]: !!color,
+      [`is-disabled`]: disabled,
+    },
+  ]
+})
+</script>
 
 <template>
-  <button style="padding: 8px 15px; color: red; border: 1px solid salmon; border-radius: 2px">
-    Test Btn
-  </button>
+  <Button type="primary" :class="getButtonClass">
+    <template #default="data">
+      <slot v-bind="data || {}"></slot>
+    </template>
+  </Button>
 </template>

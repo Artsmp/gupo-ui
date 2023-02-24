@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, unref, watch, watchEffect } from 'vue'
-import { isNumber } from '../../../utils'
+import { isNumber } from '../../utils'
 import { TransitionPresets, useTransition } from '@vueuse/core'
 
 type Props = {
@@ -28,15 +28,8 @@ const props = withDefaults(defineProps<Props>(), {
   useEasing: true,
   transition: 'linear',
 })
-const enum Events {
-  started = 'started',
-  finished = 'finished',
-}
-type Emitter = {
-  (e: Events.started): void
-  (e: Events.finished): void
-}
-const emitter = defineEmits<Emitter>()
+
+const emitter = defineEmits(['started', 'finished'])
 const color = ref(props.color)
 const source = ref(props.start)
 const disabled = ref(false)
@@ -70,8 +63,8 @@ function run() {
   outputValue = useTransition(source, {
     disabled,
     duration: props.duration,
-    onFinished: () => emitter(Events.finished),
-    onStarted: () => emitter(Events.started),
+    onFinished: () => emitter('finished'),
+    onStarted: () => emitter('started'),
     ...(props.useEasing ? { transition: TransitionPresets[props.transition] } : {}),
   })
 }

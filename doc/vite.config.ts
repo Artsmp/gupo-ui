@@ -1,10 +1,8 @@
 import path from 'path'
 import { defineConfig } from 'vite'
-import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
   plugins: [
-    UnoCSS(),
     {
       name: 'md-transform',
       enforce: 'pre',
@@ -23,4 +21,11 @@ ${code}
       },
     },
   ],
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
+  },
 })

@@ -1,4 +1,4 @@
-import { withInstall } from '../../utils'
+import { withInstall } from '../utils'
 import _Button from './src/button.vue'
 
 _Button.name = 'GpButton'
